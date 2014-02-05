@@ -7,21 +7,24 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 
+/**
+ * Classe principale contenant le main qui initialise le jeu.
+ */
 public class Main extends StateBasedGame {
 
-	private AppGameContainer container;
+	private AppGameContainer containerGame;
 
 	public Main () {
 		super("Mamad Quest : An Adventure in JohanLand");
 	}
 
-	@Override
+	// Ajout de la liste des états.
 	public void initStatesList(GameContainer container) throws SlickException
 	{
 		if (container instanceof AppGameContainer) {
-			this.container = (AppGameContainer) container;
+			containerGame = (AppGameContainer) container;
 			
-			container.setShowFPS(true);
+			containerGame.setShowFPS(true);
 			addState(new Level_A());
 		}
 	}

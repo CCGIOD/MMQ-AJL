@@ -19,6 +19,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+/**
+ * Permet de charger les ressources via le fichier xml. Fichier non documenté.
+ */
 public class RessourcesManager {
 	
 	private static RessourcesManager _instance = new RessourcesManager();
