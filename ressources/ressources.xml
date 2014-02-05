@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ressources>
-<ressource type="image" id="BG">/ressources/images/bg.jpg</ressource>
-<ressource type="image" id="NUAGES">/ressources/images/nuages.png</ressource>
-<ressource type="image" id="SUN">/ressources/images/sun.png</ressource>
+
+	<!-- Background -->
+	<ressource type="image" id="BG">/ressources/images/bg.jpg</ressource>
+	<ressource type="image" id="NUAGES">/ressources/images/nuages.png</ressource>
+	<ressource type="image" id="SUN">/ressources/images/sun.png</ressource>
+	
+	<!-- Personnage -->
+			<!-- Base -->
+				<ressource type="image" id="P_S">/ressources/images/personnage/static.png</ressource>
+				<ressource type="image" id="P_W1">/ressources/images/personnage/walk1.png</ressource>
+				<ressource type="image" id="P_W2">/ressources/images/personnage/walk2.png</ressource>
+		
 </ressources>

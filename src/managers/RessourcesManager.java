@@ -32,6 +32,10 @@ public class RessourcesManager {
 	public Image getImage(String str){
 		return (Image) imageMap.get(str);
 	}
+	
+	public boolean testImage(String str){
+		return imageMap.containsKey(str);
+	}
 
 	public RessourcesManager(){
 		//soundMap = new HashMap();

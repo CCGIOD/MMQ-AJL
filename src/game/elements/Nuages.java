@@ -1,5 +1,7 @@
 package game.elements;
 
+import game.elements.interfaces.Updatable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -8,7 +10,7 @@ import managers.RessourcesManager;
 /**
  * Classe permettant d'avoir des nuages qui défilent en haut.
  */
-public class Nuages extends Element {
+public class Nuages extends Element implements Updatable {
 
 	// Nombre de type de nuages différents (dans l'image nuages.png).
 	public static final int NB_MAX_NUAGES = 21;
@@ -24,11 +26,8 @@ public class Nuages extends Element {
 	private int ymax;
 	
 	// Position du nuage de tête (déplacement vers la gauche).
-	private int x0 = 900;
+	private float x0 = 900;
 	
-	// Booléen utilisé pour ralentir la vitesse de déplacement des nuages.
-	private boolean depl = false;
-
 	public Nuages (int z, int ymax){
 		super(z);
 		this.ymax=ymax;
@@ -51,18 +50,7 @@ public class Nuages extends Element {
 
 	// Affichage des nuages qui rentre dans la fenêtre.
 	public void render (RessourcesManager rm){
-		if (depl){			
-			x0--;
-			if (x0 <= -280){
-				sequence.remove(0);
-				x0=0;
-			}
-			if (sequence.size() == 0)
-				initSequence();
-		}
-		depl=!depl;
-		
-		int xl = x0,i=0;
+		int xl = (int) x0,i=0;
 		while (xl < 1000 && i < sequence.size()){
 			int id = sequence.get(i);
 			if (id != 0){
@@ -73,5 +61,16 @@ public class Nuages extends Element {
 			i++;
 		}
 	}
+
+	// Update la position de la séquence et la réinitialise si nécéssaire.
+	public void update(int d) {
+			x0 -= d / 35f;
+			if (x0 <= -280){
+				sequence.remove(0);
+				x0=0;
+			}
+			if (sequence.size() == 0)
+				initSequence();
+	}	
 
 }

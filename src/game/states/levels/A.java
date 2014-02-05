@@ -20,23 +20,22 @@ public class A extends AbstractLevel {
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
+		// Définition du background
+		background=ressourcesManager.getImage("BG");
 		
 		// Ajout des éléments.
 		addElement(new Nuages(1,50));
-		addElement(new Sun(0));
+		addElement(new Sun(0,ressourcesManager.getImage("SUN")));
 		
 		// Se termine par le tri des éléments par ordre de zindex :
 		Collections.sort(listElements);		
 	}
 
-	@Override
-	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
-		ressourcesManager.getImage("BG").draw(0,0);
-		renderListElements();
+	public void renderIn(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
+
 	}
 
-	@Override
-	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
+	public void updateIn(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 
 	}
 
