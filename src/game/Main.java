@@ -1,5 +1,7 @@
 package game;
 
+import game.states.Level_A;
+
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
@@ -18,6 +20,9 @@ public class Main extends StateBasedGame {
 	{
 		if (container instanceof AppGameContainer) {
 			this.container = (AppGameContainer) container;
+			
+			container.setShowFPS(true);
+			addState(new Level_A());
 		}
 	}
 
