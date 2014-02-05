@@ -43,6 +43,10 @@ public class Nuages extends Element {
 		Collections.shuffle(sequence);		
 		hauteurs = new ArrayList<Integer>();
 		for (int i=0;i<NB_MAX_NUAGES+NB_VIDES;hauteurs.add((int) (Math.random()*100)%ymax),i++);
+		while (sequence.get(0) == 0){
+			sequence.remove(0);
+			hauteurs.remove(0);
+		}		
 	}
 
 	// Affichage des nuages qui rentre dans la fenêtre.
@@ -69,18 +73,5 @@ public class Nuages extends Element {
 			i++;
 		}
 	}
-	
-	// Déplacement de la position de tête de 1 pixel vers la gauche et réinitialisation de la séquence si nécéssaire.
-	/*public void update (){
-		if (depl){			
-			x0--;
-			if (x0 <= -280){
-				sequence.remove(0);
-				x0=0;
-			}
-			if (sequence.size() == 0)
-				initSequence();
-		}
-		depl=!depl;
-	}*/
+
 }
