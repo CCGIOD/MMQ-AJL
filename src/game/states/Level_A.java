@@ -15,7 +15,7 @@ public class Level_A extends AbstractLevel {
 
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
-		nuages = new Nuages();
+		nuages = new Nuages(50);
 	}
 
 	@Override

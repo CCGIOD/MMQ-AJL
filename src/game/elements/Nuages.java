@@ -13,7 +13,8 @@ public class Nuages {
 	private ArrayList<Integer> sequence;
 	private ArrayList<Integer> hauteurs;
 
-	private int x0 = 0;
+	private int ymax;
+	private int x0 = 900;
 	
 	private boolean depl = false;
 
@@ -23,11 +24,12 @@ public class Nuages {
 		for (int i=0;i<10;sequence.add(0),i++);
 		Collections.shuffle(sequence);		
 		hauteurs = new ArrayList<Integer>();
-		for (int i=0;i<NB_MAX_NUAGES+NB_VIDES;hauteurs.add((int) (Math.random()*100)%50),i++);
+		for (int i=0;i<NB_MAX_NUAGES+NB_VIDES;hauteurs.add((int) (Math.random()*100)%ymax),i++);
 		System.out.println(sequence);
 	}
 
-	public Nuages (){
+	public Nuages (int ymax){
+		this.ymax=ymax;
 		initSequence();
 	}
 
