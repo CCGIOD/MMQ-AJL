@@ -25,6 +25,13 @@ public abstract class AbstractLevel extends BasicGameState {
 	// Liste des éléments updatable.
 	protected List<Updatable> listUpdatable = new ArrayList<>();
 
+	public void addElement (Element e){
+		listElements.add(e);
+		if (e instanceof Updatable)
+			listUpdatable.add((Updatable) e);
+	}
+	
+	
 	// Affiche tous les éléments du niveau z
 	public void renderListRenderable (int z){
 		Iterator<Element> i = listElements.iterator();

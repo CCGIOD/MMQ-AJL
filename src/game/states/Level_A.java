@@ -3,6 +3,7 @@ package game.states;
 import java.util.Collections;
 
 import game.elements.Nuages;
+import game.elements.Sun;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -20,9 +21,8 @@ public class Level_A extends AbstractLevel {
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		
 		// Ajout des éléments.
-		Nuages nuages = new Nuages(0,50);
-		listElements.add(nuages);
-		listUpdatable.add(nuages);
+		addElement(new Nuages(1,50));
+		addElement(new Sun(0));
 		
 		// Se termine par le tri des éléments par ordre de zindex :
 		Collections.sort(listElements);		
