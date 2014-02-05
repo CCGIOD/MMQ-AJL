@@ -1,9 +1,10 @@
-package game.states;
+package game.states.levels;
 
 import java.util.Collections;
 
 import game.elements.Nuages;
 import game.elements.Sun;
+import game.states.AbstractLevel;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -13,7 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
 /**
  * Level A du jeu.
  */
-public class Level_A extends AbstractLevel {
+public class A extends AbstractLevel {
 
 	public static final int ID = 1;
 	
@@ -31,12 +32,12 @@ public class Level_A extends AbstractLevel {
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		ressourcesManager.getImage("BG").draw(0,0);
-		renderListRenderable();
+		renderListElements();
 	}
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
-		updateListUpdatable();
+
 	}
 
 	@Override

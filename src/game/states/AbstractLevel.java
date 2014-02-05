@@ -1,7 +1,6 @@
 package game.states;
 
 import game.elements.Element;
-import game.elements.interfaces.Updatable;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,18 +21,13 @@ public abstract class AbstractLevel extends BasicGameState {
 	// Liste des éléments affichables.
 	protected List<Element> listElements = new ArrayList<>();
 	
-	// Liste des éléments updatable.
-	protected List<Updatable> listUpdatable = new ArrayList<>();
 
 	public void addElement (Element e){
 		listElements.add(e);
-		if (e instanceof Updatable)
-			listUpdatable.add((Updatable) e);
-	}
-	
+	}	
 	
 	// Affiche tous les éléments du niveau z
-	public void renderListRenderable (int z){
+	public void renderListElements (int z){
 		Iterator<Element> i = listElements.iterator();
 		while(i.hasNext())
 			if (z < 0 || z == i.next().getZindex())
@@ -41,15 +35,8 @@ public abstract class AbstractLevel extends BasicGameState {
 	}
 	
 	// Affiche tous les éléments dans l'ordre des z.
-	public void renderListRenderable (){
-		renderListRenderable(-1);
-	}
-		
-	// Update tous les éléments updatables.
-	public void updateListUpdatable (){
-		Iterator<Updatable> i = listUpdatable.iterator();
-		while(i.hasNext())
-				i.next().update();
+	public void renderListElements (){
+		renderListElements(-1);
 	}
 	
 }

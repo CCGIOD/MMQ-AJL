@@ -1,7 +1,5 @@
 package game.elements;
 
-import game.elements.interfaces.Updatable;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -10,7 +8,7 @@ import managers.RessourcesManager;
 /**
  * Classe permettant d'avoir des nuages qui défilent en haut.
  */
-public class Nuages extends Element implements Updatable {
+public class Nuages extends Element {
 
 	// Nombre de type de nuages différents (dans l'image nuages.png).
 	public static final int NB_MAX_NUAGES = 21;
@@ -49,6 +47,17 @@ public class Nuages extends Element implements Updatable {
 
 	// Affichage des nuages qui rentre dans la fenêtre.
 	public void render (RessourcesManager rm){
+		if (depl){			
+			x0--;
+			if (x0 <= -280){
+				sequence.remove(0);
+				x0=0;
+			}
+			if (sequence.size() == 0)
+				initSequence();
+		}
+		depl=!depl;
+		
 		int xl = x0,i=0;
 		while (xl < 1000 && i < sequence.size()){
 			int id = sequence.get(i);
@@ -62,7 +71,7 @@ public class Nuages extends Element implements Updatable {
 	}
 	
 	// Déplacement de la position de tête de 1 pixel vers la gauche et réinitialisation de la séquence si nécéssaire.
-	public void update (){
+	/*public void update (){
 		if (depl){			
 			x0--;
 			if (x0 <= -280){
@@ -73,5 +82,5 @@ public class Nuages extends Element implements Updatable {
 				initSequence();
 		}
 		depl=!depl;
-	}
+	}*/
 }
