@@ -1,6 +1,8 @@
 package game.states;
 
 import game.elements.Element;
+import game.elements.interfaces.Activable;
+import game.elements.interfaces.Deletable;
 import game.elements.interfaces.Updatable;
 import game.personnage.Personnage;
 
@@ -29,17 +31,27 @@ public abstract class AbstractLevel extends BasicGameState {
 	// Liste des éléments affichables.
 	protected List<Element> listElements = new ArrayList<>();
 
-	// Liste des éléments updatable.
-	protected List<Updatable> listUpdatable = new ArrayList<>();
+	// Liste des éléments updatables.
+	protected List<Updatable> listUpdatables = new ArrayList<>();
+
+	// Liste des éléments activables.
+	protected List<Activable> listActivables = new ArrayList<>();
+
+	// Liste des éléments activables.
+	protected List<Deletable> listDeletables = new ArrayList<>();
 
 	protected Image background;
 
 	protected static Personnage perso = new Personnage();
-	
+
 	public void addElement (Element e){
 		listElements.add(e);
 		if (e instanceof Updatable)
-			listUpdatable.add((Updatable) e);
+			listUpdatables.add((Updatable) e);
+		if (e instanceof Activable)
+			listActivables.add((Activable) e);
+		if (e instanceof Deletable)
+			listDeletables.add((Deletable) e);
 	}	
 
 	// Affiche tous les éléments du niveau z
@@ -56,10 +68,40 @@ public abstract class AbstractLevel extends BasicGameState {
 	}
 
 	// Update tous les éléments updatables.
-	public void updateListUpdatable (int d){
-		Iterator<Updatable> i = listUpdatable.iterator();
+	public void updateListUpdatables (int d){
+		Iterator<Updatable> i = listUpdatables.iterator();
 		while(i.hasNext())
 			i.next().update(d);
+	}
+
+	// Update tous les éléments activables (que s'ils sont activés).
+	public void updateListActivables (int d){
+		Iterator<Activable> i = listActivables.iterator();
+		while(i.hasNext()){
+			Activable a = i.next();
+			if (a.testActive())
+				a.update(d);
+			else
+				a.testActivation(perso);
+		}
+	}
+
+	// Update tous les éléments deletables.
+	public void updateListDeletables (int d){
+		List<Deletable> toDelete = new ArrayList<>();		
+		for (int i=0;i<listDeletables.size();i++){
+			if (listDeletables.get(i).testDelete())
+				toDelete.add(listDeletables.get(i));
+		}
+		for (int i=0;i<toDelete.size();i++){
+			listElements.remove(toDelete.get(i));
+			if (listActivables.contains(toDelete.get(i)))
+				listActivables.remove(toDelete.get(i));
+			if (listUpdatables.contains(toDelete.get(i)))
+				listUpdatables.remove(toDelete.get(i));
+			if (listDeletables.contains(toDelete.get(i)))
+				listDeletables.remove(toDelete.get(i));
+		}
 	}
 
 	@Override
@@ -74,19 +116,21 @@ public abstract class AbstractLevel extends BasicGameState {
 
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 		Input input = arg0.getInput ();
-		
+
 		// Test input clavier :
 		boolean stop = true;
 		if (input.isKeyDown(Input.KEY_D)){ perso.droite(arg2); stop = false; } 
 		else if (input.isKeyDown(Input.KEY_Q)){ perso.gauche(arg2); stop = false; } 
 		if (input.isKeyDown(Input.KEY_Z)){ perso.haut(arg2); stop = false;} 
 		else if (input.isKeyDown(Input.KEY_S)){ perso.bas(arg2); stop = false; }
-		
+
 		if (stop)
 			perso.stop();
-		
-		updateListUpdatable(arg2);
-		
+
+		updateListUpdatables(arg2);
+		updateListActivables(arg2);
+		updateListDeletables(arg2);
+	
 		updateIn(arg0, arg1, arg2);
 	}
 

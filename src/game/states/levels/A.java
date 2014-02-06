@@ -2,6 +2,7 @@ package game.states.levels;
 
 import java.util.Collections;
 
+import game.elements.Coccinelle;
 import game.elements.Nuages;
 import game.elements.Sun;
 import game.states.AbstractLevel;
@@ -26,6 +27,7 @@ public class A extends AbstractLevel {
 		// Ajout des éléments.
 		addElement(new Nuages(1,50));
 		addElement(new Sun(0,ressourcesManager.getImage("SUN")));
+		addElement(new Coccinelle(2));
 		
 		// Se termine par le tri des éléments par ordre de zindex :
 		Collections.sort(listElements);		
