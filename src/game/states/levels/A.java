@@ -24,6 +24,8 @@ public class A extends AbstractLevel {
 		// Définition du background
 		background=ressourcesManager.getImage("BG");
 		
+		// Ajout des blocs
+		
 		// Ajout des éléments.
 		addElement(new Nuages(1,50));
 		addElement(new Sun(0,ressourcesManager.getImage("SUN")));

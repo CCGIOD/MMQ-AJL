@@ -70,12 +70,12 @@ public class Personnage {
 
 	public void render(RessourcesManager rm){
 		if (droite)
-			rm.getImage(image).draw(x, y);
+			rm.getImage(image).draw((int) x, (int) y);
 		else if (rm.testImage(image+"_L")){
-			rm.getImage(image+"_L").draw(x, y);
+			rm.getImage(image+"_L").draw((int) x, (int) y);
 		}
 		else{
-			rm.getImage(image).getScaledCopy(-1*rm.getImage(image).getWidth(),rm.getImage(image).getHeight()).draw(x+rm.getImage(image).getHeight(),y);
+			rm.getImage(image).getScaledCopy(-1*rm.getImage(image).getWidth(),rm.getImage(image).getHeight()).draw((int) x+rm.getImage(image).getHeight(), (int) y);
 		}
 	}
 
