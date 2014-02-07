@@ -1,4 +1,4 @@
-package game.personnage;
+package game.components;
 
 import managers.RessourcesManager;
 
@@ -9,7 +9,7 @@ public class Personnage {
 
 	// Position du personnage.
 	private float x = 200;
-	private float y = 199;
+	private float y = 200;
 	
 	// Image active
 	private String image = "P_S";
@@ -78,5 +78,4 @@ public class Personnage {
 			rm.getImage(image).getScaledCopy(-1*rm.getImage(image).getWidth(),rm.getImage(image).getHeight()).draw((int) x+rm.getImage(image).getHeight(), (int) y);
 		}
 	}
-
 }

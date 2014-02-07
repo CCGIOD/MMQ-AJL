@@ -69,8 +69,10 @@ public class Nuages extends Element implements Updatable {
 				sequence.remove(0);
 				x0=0;
 			}
-			if (sequence.size() == 0)
+			if (sequence.size() == 0){
 				initSequence();
+				x0=1000;
+			}
 	}	
 
 }

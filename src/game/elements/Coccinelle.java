@@ -2,17 +2,17 @@ package game.elements;
 
 import org.newdawn.slick.Image;
 
+import game.components.Personnage;
 import game.elements.interfaces.Activable;
 import game.elements.interfaces.Deletable;
-import game.personnage.Personnage;
 import managers.RessourcesManager;
 
 public class Coccinelle extends Element implements Activable, Deletable {
 
 	private int part = 0;
 	
-	private float x = 44f;
-	private float y = 188f;
+	private float x = 37f;
+	private float y = 190f;
 	
 	private float angle = 0;
 
@@ -30,9 +30,9 @@ public class Coccinelle extends Element implements Activable, Deletable {
 	@Override
 	public void update(int d) {
 		x -= d / 7f;
-		y -= d / 15f;
+		y -= d / 10f;
 		
-		angle -= 1.2;
+		angle -= 0.70;
 	}
 	
 	

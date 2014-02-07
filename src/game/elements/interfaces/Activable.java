@@ -1,6 +1,6 @@
 package game.elements.interfaces;
 
-import game.personnage.Personnage;
+import game.components.Personnage;
 
 /**
  * Interface demandant les fonctions update et testActiver sur un éléments activable.

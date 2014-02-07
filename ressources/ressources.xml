@@ -2,14 +2,19 @@
 <ressources>
 
 	<!-- Background -->
-	<ressource type="image" id="BG">/ressources/images/bg.jpg</ressource>
-	<ressource type="image" id="NUAGES">/ressources/images/nuages.png</ressource>
-	<ressource type="image" id="SUN">/ressources/images/sun.png</ressource>
+		<ressource type="image" id="BG">/ressources/images/bg.jpg</ressource>
+		<ressource type="image" id="NUAGES">/ressources/images/nuages.png</ressource>
+		<ressource type="image" id="SUN">/ressources/images/sun.png</ressource>
 	
 	<!--  Decor -->
-	<ressource type="image" id="COCCI">/ressources/images/cocci.png</ressource>
+		<ressource type="image" id="COCCI">/ressources/images/cocci.png</ressource>
 	
-	
+	<!--  Bloc -->
+			<ressource type="image" id="BL_T">/ressources/images/bl/terre.jpg</ressource>
+			<ressource type="image" id="BL_TH">/ressources/images/bl/terre_herbe.jpg</ressource>
+			<ressource type="image" id="BL_R">/ressources/images/bl/rocher.jpg</ressource>
+			<ressource type="image" id="BL_RN">/ressources/images/bl/rocher_neige.jpg</ressource>
+				
 	<!-- Personnage -->
 			<!-- Base -->
 				<ressource type="image" id="P_S">/ressources/images/personnage/static.png</ressource>

@@ -1,10 +1,11 @@
 package game.states;
 
+import game.components.Carte;
+import game.components.Personnage;
 import game.elements.Element;
 import game.elements.interfaces.Activable;
 import game.elements.interfaces.Deletable;
 import game.elements.interfaces.Updatable;
-import game.personnage.Personnage;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -44,6 +45,8 @@ public abstract class AbstractLevel extends BasicGameState {
 
 	protected static Personnage perso = new Personnage();
 
+	protected Carte carte;
+
 	public void addElement (Element e){
 		listElements.add(e);
 		if (e instanceof Updatable)
@@ -54,7 +57,7 @@ public abstract class AbstractLevel extends BasicGameState {
 			listDeletables.add((Deletable) e);
 	}	
 
-	// Affiche tous les éléments du niveau z
+	/*// Affiche tous les éléments du niveau z
 	public void renderListElements (int z){
 		Iterator<Element> i = listElements.iterator();
 		while(i.hasNext())
@@ -65,6 +68,27 @@ public abstract class AbstractLevel extends BasicGameState {
 	// Affiche tous les éléments dans l'ordre des z.
 	public void renderListElements (){
 		renderListElements(-1);
+	}*/
+
+	// Affiche tous les éléments du niveau z.
+	public void renderListElementsNegatifs (){
+		Iterator<Element> i = listElements.iterator();
+		while(i.hasNext()){
+			Element e = i.next();
+			if (e.getZindex() < 0)
+				e.render(ressourcesManager);
+		}
+
+	}
+	
+	// Affiche tous les éléments du niveau z.
+	public void renderListElementsPositifs (){
+		Iterator<Element> i = listElements.iterator();
+		while(i.hasNext()){
+			Element e = i.next();
+			if (e.getZindex() > 0)
+				e.render(ressourcesManager);
+		}
 	}
 
 	// Update tous les éléments updatables.
@@ -107,8 +131,10 @@ public abstract class AbstractLevel extends BasicGameState {
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException {
 		background.draw(0,0);
+		renderListElementsNegatifs();
+		carte.render(ressourcesManager);
+		renderListElementsPositifs();
 		renderIn(arg0, arg1, arg2);
-		renderListElements();
 		perso.render(ressourcesManager);
 	}
 
@@ -130,7 +156,7 @@ public abstract class AbstractLevel extends BasicGameState {
 		updateListUpdatables(arg2);
 		updateListActivables(arg2);
 		updateListDeletables(arg2);
-	
+
 		updateIn(arg0, arg1, arg2);
 	}
 
