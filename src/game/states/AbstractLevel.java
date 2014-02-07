@@ -135,7 +135,7 @@ public abstract class AbstractLevel extends BasicGameState {
 		carte.render(ressourcesManager);
 		renderListElementsPositifs();
 		renderIn(arg0, arg1, arg2);
-		perso.render(ressourcesManager);
+		perso.render(ressourcesManager, arg2);
 	}
 
 	public abstract void renderIn (GameContainer arg0, StateBasedGame arg1, Graphics arg2) throws SlickException;
@@ -150,8 +150,10 @@ public abstract class AbstractLevel extends BasicGameState {
 		if (input.isKeyDown(Input.KEY_Z)){ perso.haut(arg2); stop = false;} 
 		else if (input.isKeyDown(Input.KEY_S)){ perso.bas(arg2); stop = false; }
 
-		if (stop)
+		if (stop){
 			perso.stop();
+			perso.update(arg2);
+		}
 
 		updateListUpdatables(arg2);
 		updateListActivables(arg2);
