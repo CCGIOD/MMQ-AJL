@@ -11,6 +11,9 @@ import managers.RessourcesManager;
  */
 public class Personnage {
 
+	private final boolean DROITE = true;
+	private final boolean GAUCHE = false;
+
 	// Position du personnage.
 	private float x = 200;
 	private float y = 200;
@@ -22,12 +25,23 @@ public class Personnage {
 	private String image = "P_S";
 
 	// Variables de déplacement.
-	private boolean droite = true;
+	private boolean sens = DROITE;
 	private int cptWalk = -1;
 	private float speed = 10f;
 
+	private void swap (boolean newSens){
+		if (newSens == DROITE && sens == GAUCHE) {
+			sens=DROITE;
+			x-=50;
+		}
+		else if (newSens == GAUCHE && sens == DROITE){
+			sens=GAUCHE;
+			x+=50;
+		}
+	}
+
 	public void droite (int d){
-		droite = true;
+		swap(DROITE);
 		x += d / speed;
 
 		if (cptWalk == -1)
@@ -40,7 +54,7 @@ public class Personnage {
 	}
 
 	public void gauche (int d){
-		droite = false;
+		swap(GAUCHE);
 		x -= d / speed;
 
 		if (cptWalk == -1)
@@ -77,7 +91,7 @@ public class Personnage {
 
 	public void update (int d){
 		cptOeil+=d;
-		
+
 		if (cptOeil > 1500)
 			closeOeil=true;
 		if (cptOeil > 1700){
@@ -87,18 +101,23 @@ public class Personnage {
 	}
 
 	public void render(RessourcesManager rm, Graphics g){
-		if (droite)
+		if (sens == DROITE){
 			rm.getImage(image).draw((int) x, (int) y);
+		}
 		else if (rm.testImage(image+"_L")){
 			rm.getImage(image+"_L").draw((int) x, (int) y);
 		}
 		else{
-			rm.getImage(image).getScaledCopy(-1*rm.getImage(image).getWidth(),rm.getImage(image).getHeight()).draw((int) x+rm.getImage(image).getHeight(), (int) y);
+			rm.getImage(image).getScaledCopy(-1*rm.getImage(image).getWidth(),rm.getImage(image).getHeight()).draw((int) x, (int) y);
 		}
 
 		if (closeOeil){
 			g.setColor(Color.black);
-			g.fillRect(x+31, y+19, 2, 2);
+
+			if (sens == DROITE)
+				g.fillRect(((int) x)+31, ((int) y)+19, 2, 2);
+			else
+				g.fillRect(((int) x)-33, ((int) y)+19, 2, 2);
 		}
 	}
 }
